@@ -3,8 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C5E03DF-FCA3-4EA0-82EA-9666961E875C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.Domain", "BusTicketReservationSystem.Domain\BusTicketReservationSystem.Domain.csproj", "{2670C057-C12D-4CA5-AAF0-5ECAE098D666}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.Application", "BusTicketReservationSystem.Application\BusTicketReservationSystem.Application.csproj", "{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.Application.Contracts", "BusTicketReservationSystem.Application.Contracts\BusTicketReservationSystem.Application.Contracts.csproj", "{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.Infrastructure", "BusTicketReservationSystem.Infrastructure\BusTicketReservationSystem.Infrastructure.csproj", "{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.API", "BusTicketReservationSystem.API\BusTicketReservationSystem.API.csproj", "{FE1BDE38-ADFA-4E69-B256-706162D28692}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2670C057-C12D-4CA5-AAF0-5ECAE098D666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2670C057-C12D-4CA5-AAF0-5ECAE098D666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2670C057-C12D-4CA5-AAF0-5ECAE098D666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2670C057-C12D-4CA5-AAF0-5ECAE098D666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2670C057-C12D-4CA5-AAF0-5ECAE098D666} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
+		{F7152FA2-486D-4CE0-B2CD-FBDE07328FC2} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
+		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
+		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
+		{FE1BDE38-ADFA-4E69-B256-706162D28692} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
 	EndGlobalSection
 EndGlobal
