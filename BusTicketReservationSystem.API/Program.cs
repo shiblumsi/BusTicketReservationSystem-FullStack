@@ -1,4 +1,8 @@
+using BusTicketReservationSystem.Application.Contracts.Interfaces;
+using BusTicketReservationSystem.Application.Contracts.Interfaces.Repositories;
+using BusTicketReservationSystem.Application.Services;
 using BusTicketReservationSystem.Infrastructure.Persistence;
+using BusTicketReservationSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,21 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+//DI
+builder.Services.AddScoped<IBusScheduleRepository, BusScheduleRepository>();
+builder.Services.AddScoped<ISearchService, SearchService>();
+
+builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+
+
+
+
+
 
 var app = builder.Build();
 

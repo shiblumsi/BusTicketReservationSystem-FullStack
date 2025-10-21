@@ -11,6 +11,7 @@ namespace BusTicketReservationSystem.Domain.Entities
         public Guid Id { get; private set; }
         public Guid BusId { get; private set; }
         public Guid RouteId { get; private set; }
+        public DateTime JourneyDate { get; private set; }
         public DateTime DepartureTime { get; private set; }
         public DateTime ArrivalTime { get; private set; }
         public decimal Price { get; private set; }
@@ -21,11 +22,12 @@ namespace BusTicketReservationSystem.Domain.Entities
 
         protected BusSchedule() { }
 
-        public BusSchedule(Guid busId, Guid routeId, DateTime departure, DateTime arrival, decimal price)
+        public BusSchedule(Guid busId, Guid routeId, DateTime journeyDate, DateTime departure, DateTime arrival, decimal price)
         {
             Id = Guid.NewGuid();
             BusId = busId;
             RouteId = routeId;
+            JourneyDate = journeyDate;
             DepartureTime = departure;
             ArrivalTime = arrival;
             Price = price;

@@ -61,6 +61,7 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     BusId = table.Column<Guid>(type: "uuid", nullable: false),
                     RouteId = table.Column<Guid>(type: "uuid", nullable: false),
+                    JourneyDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false)
@@ -145,19 +146,12 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "BusSchedules",
-                columns: new[] { "Id", "ArrivalTime", "BusId", "DepartureTime", "Price", "RouteId" },
+                columns: new[] { "Id", "ArrivalTime", "BusId", "DepartureTime", "JourneyDate", "Price", "RouteId" },
                 values: new object[,]
                 {
-                    { new Guid("11111111-7777-1111-7777-111111117777"), new DateTime(2025, 10, 21, 15, 0, 0, 0, DateTimeKind.Utc), new Guid("77777777-7777-7777-7777-777777777777"), new DateTime(2025, 10, 21, 12, 0, 0, 0, DateTimeKind.Utc), 900m, new Guid("70707070-7070-7070-7070-707070707070") },
-                    { new Guid("22222222-8888-2222-8888-222222228888"), new DateTime(2025, 10, 21, 16, 0, 0, 0, DateTimeKind.Utc), new Guid("88888888-8888-8888-8888-888888888888"), new DateTime(2025, 10, 21, 13, 0, 0, 0, DateTimeKind.Utc), 1000m, new Guid("80808080-8080-8080-8080-808080808080") },
-                    { new Guid("33333333-9999-3333-9999-333333339999"), new DateTime(2025, 10, 21, 15, 0, 0, 0, DateTimeKind.Utc), new Guid("99999999-9999-9999-9999-999999999999"), new DateTime(2025, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), 950m, new Guid("90909090-9090-9090-9090-909090909090") },
-                    { new Guid("44444444-aaaa-4444-aaaa-44444444aaaa"), new DateTime(2025, 10, 21, 18, 0, 0, 0, DateTimeKind.Utc), new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), new DateTime(2025, 10, 21, 15, 0, 0, 0, DateTimeKind.Utc), 1200m, new Guid("11111111-1111-1111-1111-111111111011") },
-                    { new Guid("aaaaaaaa-1111-aaaa-1111-aaaaaaaaaaaa"), new DateTime(2025, 10, 21, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("11111111-1111-1111-1111-111111111111"), new DateTime(2025, 10, 21, 6, 0, 0, 0, DateTimeKind.Utc), 1200m, new Guid("10101010-1010-1010-1010-101010101010") },
-                    { new Guid("bbbbbbbb-2222-bbbb-2222-bbbbbbbbbbbb"), new DateTime(2025, 10, 21, 13, 0, 0, 0, DateTimeKind.Utc), new Guid("22222222-2222-2222-2222-222222222222"), new DateTime(2025, 10, 21, 7, 0, 0, 0, DateTimeKind.Utc), 1300m, new Guid("20202020-2020-2020-2020-202020202020") },
-                    { new Guid("cccccccc-3333-cccc-3333-cccccccccccc"), new DateTime(2025, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("33333333-3333-3333-3333-333333333333"), new DateTime(2025, 10, 21, 8, 0, 0, 0, DateTimeKind.Utc), 1400m, new Guid("30303030-3030-3030-3030-303030303030") },
-                    { new Guid("dddddddd-4444-dddd-4444-dddddddddddd"), new DateTime(2025, 10, 21, 15, 0, 0, 0, DateTimeKind.Utc), new Guid("44444444-4444-4444-4444-444444444444"), new DateTime(2025, 10, 21, 9, 0, 0, 0, DateTimeKind.Utc), 1500m, new Guid("40404040-4040-4040-4040-404040404040") },
-                    { new Guid("eeeeeeee-5555-eeee-5555-eeeeeeeeeeee"), new DateTime(2025, 10, 21, 16, 0, 0, 0, DateTimeKind.Utc), new Guid("55555555-5555-5555-5555-555555555555"), new DateTime(2025, 10, 21, 10, 0, 0, 0, DateTimeKind.Utc), 1600m, new Guid("50505050-5050-5050-5050-505050505050") },
-                    { new Guid("ffffffff-6666-ffff-6666-ffffffff6666"), new DateTime(2025, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("66666666-6666-6666-6666-666666666666"), new DateTime(2025, 10, 21, 11, 0, 0, 0, DateTimeKind.Utc), 1100m, new Guid("60606060-6060-6060-6060-606060606060") }
+                    { new Guid("aaaaaaaa-1111-aaaa-1111-aaaaaaaaaaaa"), new DateTime(2025, 10, 21, 12, 0, 0, 0, DateTimeKind.Utc), new Guid("11111111-1111-1111-1111-111111111111"), new DateTime(2025, 10, 21, 6, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc), 1200m, new Guid("40404040-4040-4040-4040-404040404040") },
+                    { new Guid("bbbbbbbb-2222-bbbb-2222-bbbbbbbbbbbb"), new DateTime(2025, 10, 21, 13, 0, 0, 0, DateTimeKind.Utc), new Guid("22222222-2222-2222-2222-222222222222"), new DateTime(2025, 10, 21, 7, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc), 1300m, new Guid("20202020-2020-2020-2020-202020202020") },
+                    { new Guid("cccccccc-3333-cccc-3333-cccccccccccc"), new DateTime(2025, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc), new Guid("33333333-3333-3333-3333-333333333333"), new DateTime(2025, 10, 21, 8, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc), 1400m, new Guid("30303030-3030-3030-3030-303030303030") }
                 });
 
             migrationBuilder.CreateIndex(
