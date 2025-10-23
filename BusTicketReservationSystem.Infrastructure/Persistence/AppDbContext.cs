@@ -1,4 +1,5 @@
 ﻿using BusTicketReservationSystem.Domain.Entities;
+using BusTicketReservationSystem.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace BusTicketReservationSystem.Infrastructure.Persistence
         public DbSet<BusSchedule> BusSchedules { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<BoardingDropping> BoardingDroppings { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -52,7 +54,11 @@ namespace BusTicketReservationSystem.Infrastructure.Persistence
                 new { Id = Guid.Parse("70707070-7070-7070-7070-707070707070"), FromCity = "Dhaka", ToCity = "Comilla", DistanceKm = 130.0 },
                 new { Id = Guid.Parse("80808080-8080-8080-8080-808080808080"), FromCity = "Dhaka", ToCity = "Narsingdi", DistanceKm = 90.0 },
                 new { Id = Guid.Parse("90909090-9090-9090-9090-909090909090"), FromCity = "Dhaka", ToCity = "Gazipur", DistanceKm = 50.0 },
-                new { Id = Guid.Parse("11111111-1111-1111-1111-111111111011"), FromCity = "Dhaka", ToCity = "Tangail", DistanceKm = 115.0 }
+                new { Id = Guid.Parse("11111111-1111-1111-1111-111111111011"), FromCity = "Dhaka", ToCity = "Tangail", DistanceKm = 115.0 },
+                new { Id = Guid.Parse("12121212-1212-1212-1212-121212121212"), FromCity = "Dhaka", ToCity = "Cox's Bazar", DistanceKm = 400.0 },
+                new { Id = Guid.Parse("13131313-1313-1313-1313-131313131313"), FromCity = "Cox's Bazar", ToCity = "Dhaka", DistanceKm = 400.0 }
+  
+    
             );
 
             // ---------------- BusSchedules ----------------
@@ -61,6 +67,16 @@ namespace BusTicketReservationSystem.Infrastructure.Persistence
                 {
                     Id = Guid.Parse("aaaaaaaa-1111-aaaa-1111-aaaaaaaaaaaa"),
                     BusId = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                    RouteId = Guid.Parse("40404040-4040-4040-4040-404040404040"),
+                    JourneyDate = new DateTime(2025, 10, 21).Date,
+                    DepartureTime = DateTime.SpecifyKind(new DateTime(2025, 10, 21, 6, 0, 0), DateTimeKind.Utc),
+                    ArrivalTime = DateTime.SpecifyKind(new DateTime(2025, 10, 21, 12, 0, 0), DateTimeKind.Utc),
+                    Price = 1200m
+                },
+                new
+                {
+                    Id = Guid.Parse("aaaaaaaa-1111-bbbb-1111-aaaaaaaaaaaa"),
+                    BusId = Guid.Parse("33333333-3333-3333-3333-333333333333"),
                     RouteId = Guid.Parse("40404040-4040-4040-4040-404040404040"),
                     JourneyDate = new DateTime(2025, 10, 21).Date,
                     DepartureTime = DateTime.SpecifyKind(new DateTime(2025, 10, 21, 6, 0, 0), DateTimeKind.Utc),
@@ -88,6 +104,60 @@ namespace BusTicketReservationSystem.Infrastructure.Persistence
                     Price = 1400m
                 }
             );
+            modelBuilder.Entity<BoardingDropping>().HasData(
+                // ==================== Dhaka ====================
+                // Boarding Points
+                new { Id = Guid.Parse("aaaa0001-1111-2222-3333-abcdef000001"), CityName = "Dhaka", PointName = "Uttara", Type = PointType.Boarding },
+                new { Id = Guid.Parse("aaaa0002-1111-2222-3333-abcdef000002"), CityName = "Dhaka", PointName = "Mirpur-10", Type = PointType.Boarding },
+
+                // Dropping Points
+                new { Id = Guid.Parse("aaaa0003-1111-2222-3333-abcdef000003"), CityName = "Dhaka", PointName = "Mohakhali", Type = PointType.Dropping },
+                new { Id = Guid.Parse("aaaa0004-1111-2222-3333-abcdef000004"), CityName = "Dhaka", PointName = "Kakrail", Type = PointType.Dropping },
+
+                // Both
+                new { Id = Guid.Parse("aaaa0005-1111-2222-3333-abcdef000005"), CityName = "Dhaka", PointName = "Gabtoli", Type = PointType.Both },
+                new { Id = Guid.Parse("aaaa0006-1111-2222-3333-abcdef000006"), CityName = "Dhaka", PointName = "Kallyanpur", Type = PointType.Both },
+                new { Id = Guid.Parse("aaaa0007-1111-2222-3333-abcdef000007"), CityName = "Dhaka", PointName = "Abdullahpur", Type = PointType.Both },
+                new { Id = Guid.Parse("aaaa0008-1111-2222-3333-abcdef000008"), CityName = "Dhaka", PointName = "Syedabad", Type = PointType.Both },
+                new { Id = Guid.Parse("aaaa0009-1111-2222-3333-abcdef000009"), CityName = "Dhaka", PointName = "Arambagh", Type = PointType.Both },
+
+                // ==================== Cox's Bazar ====================
+                // Boarding Points
+                new { Id = Guid.Parse("bbbb0001-1111-2222-3333-abcdef000001"), CityName = "Cox's Bazar", PointName = "Dolphin Mor", Type = PointType.Boarding },
+                new { Id = Guid.Parse("bbbb0002-1111-2222-3333-abcdef000002"), CityName = "Cox's Bazar", PointName = "Kolatoli", Type = PointType.Boarding },
+
+                // Dropping Points
+                new { Id = Guid.Parse("bbbb0003-1111-2222-3333-abcdef000003"), CityName = "Cox's Bazar", PointName = "Laboni Beach", Type = PointType.Dropping },
+                new { Id = Guid.Parse("bbbb0004-1111-2222-3333-abcdef000004"), CityName = "Cox's Bazar", PointName = "Sugandha Beach", Type = PointType.Dropping },
+
+                // Both
+                new { Id = Guid.Parse("bbbb0005-1111-2222-3333-abcdef000005"), CityName = "Cox's Bazar", PointName = "Inani", Type = PointType.Both },
+
+                // ==================== Sylhet ====================
+                // Boarding Points
+                new { Id = Guid.Parse("cccc0001-1111-2222-3333-abcdef000001"), CityName = "Sylhet", PointName = "Ambarkhana", Type = PointType.Boarding },
+                new { Id = Guid.Parse("cccc0002-1111-2222-3333-abcdef000002"), CityName = "Sylhet", PointName = "Shibgonj", Type = PointType.Boarding },
+
+                // Dropping Points
+                new { Id = Guid.Parse("cccc0003-1111-2222-3333-abcdef000003"), CityName = "Sylhet", PointName = "Zindabazar", Type = PointType.Dropping },
+                new { Id = Guid.Parse("cccc0004-1111-2222-3333-abcdef000004"), CityName = "Sylhet", PointName = "Mirabazar", Type = PointType.Dropping },
+
+                // Both
+                new { Id = Guid.Parse("cccc0005-1111-2222-3333-abcdef000005"), CityName = "Sylhet", PointName = "Kamalbazar", Type = PointType.Both },
+
+                // ==================== Khulna ====================
+                // Boarding Points
+                new { Id = Guid.Parse("dddd0001-1111-2222-3333-abcdef000001"), CityName = "Khulna", PointName = "Khalishpur", Type = PointType.Boarding },
+                new { Id = Guid.Parse("dddd0002-1111-2222-3333-abcdef000002"), CityName = "Khulna", PointName = "Sonadanga", Type = PointType.Boarding },
+
+                // Dropping Points
+                new { Id = Guid.Parse("dddd0003-1111-2222-3333-abcdef000003"), CityName = "Khulna", PointName = "Daulatpur", Type = PointType.Dropping },
+                new { Id = Guid.Parse("dddd0004-1111-2222-3333-abcdef000004"), CityName = "Khulna", PointName = "Teligati", Type = PointType.Dropping },
+
+                // Both
+                new { Id = Guid.Parse("dddd0005-1111-2222-3333-abcdef000005"), CityName = "Khulna", PointName = "Khan Jahan Ali", Type = PointType.Both }
+            );
+
         }
 
     }

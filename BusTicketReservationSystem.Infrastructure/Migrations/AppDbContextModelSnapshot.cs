@@ -22,6 +22,198 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("BusTicketReservationSystem.Domain.Entities.BoardingDropping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PointName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BoardingDroppings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aaaa0001-1111-2222-3333-abcdef000001"),
+                            CityName = "Dhaka",
+                            PointName = "Uttara",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0002-1111-2222-3333-abcdef000002"),
+                            CityName = "Dhaka",
+                            PointName = "Mirpur-10",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0003-1111-2222-3333-abcdef000003"),
+                            CityName = "Dhaka",
+                            PointName = "Mohakhali",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0004-1111-2222-3333-abcdef000004"),
+                            CityName = "Dhaka",
+                            PointName = "Kakrail",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0005-1111-2222-3333-abcdef000005"),
+                            CityName = "Dhaka",
+                            PointName = "Gabtoli",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0006-1111-2222-3333-abcdef000006"),
+                            CityName = "Dhaka",
+                            PointName = "Kallyanpur",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0007-1111-2222-3333-abcdef000007"),
+                            CityName = "Dhaka",
+                            PointName = "Abdullahpur",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0008-1111-2222-3333-abcdef000008"),
+                            CityName = "Dhaka",
+                            PointName = "Syedabad",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaa0009-1111-2222-3333-abcdef000009"),
+                            CityName = "Dhaka",
+                            PointName = "Arambagh",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbb0001-1111-2222-3333-abcdef000001"),
+                            CityName = "Cox's Bazar",
+                            PointName = "Dolphin Mor",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbb0002-1111-2222-3333-abcdef000002"),
+                            CityName = "Cox's Bazar",
+                            PointName = "Kolatoli",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbb0003-1111-2222-3333-abcdef000003"),
+                            CityName = "Cox's Bazar",
+                            PointName = "Laboni Beach",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbb0004-1111-2222-3333-abcdef000004"),
+                            CityName = "Cox's Bazar",
+                            PointName = "Sugandha Beach",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbb0005-1111-2222-3333-abcdef000005"),
+                            CityName = "Cox's Bazar",
+                            PointName = "Inani",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("cccc0001-1111-2222-3333-abcdef000001"),
+                            CityName = "Sylhet",
+                            PointName = "Ambarkhana",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("cccc0002-1111-2222-3333-abcdef000002"),
+                            CityName = "Sylhet",
+                            PointName = "Shibgonj",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("cccc0003-1111-2222-3333-abcdef000003"),
+                            CityName = "Sylhet",
+                            PointName = "Zindabazar",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("cccc0004-1111-2222-3333-abcdef000004"),
+                            CityName = "Sylhet",
+                            PointName = "Mirabazar",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("cccc0005-1111-2222-3333-abcdef000005"),
+                            CityName = "Sylhet",
+                            PointName = "Kamalbazar",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("dddd0001-1111-2222-3333-abcdef000001"),
+                            CityName = "Khulna",
+                            PointName = "Khalishpur",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("dddd0002-1111-2222-3333-abcdef000002"),
+                            CityName = "Khulna",
+                            PointName = "Sonadanga",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("dddd0003-1111-2222-3333-abcdef000003"),
+                            CityName = "Khulna",
+                            PointName = "Daulatpur",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("dddd0004-1111-2222-3333-abcdef000004"),
+                            CityName = "Khulna",
+                            PointName = "Teligati",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("dddd0005-1111-2222-3333-abcdef000005"),
+                            CityName = "Khulna",
+                            PointName = "Khan Jahan Ali",
+                            Type = 2
+                        });
+                });
+
             modelBuilder.Entity("BusTicketReservationSystem.Domain.Entities.Bus", b =>
                 {
                     b.Property<Guid>("Id")
@@ -155,7 +347,17 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                             ArrivalTime = new DateTime(2025, 10, 21, 12, 0, 0, 0, DateTimeKind.Utc),
                             BusId = new Guid("11111111-1111-1111-1111-111111111111"),
                             DepartureTime = new DateTime(2025, 10, 21, 6, 0, 0, 0, DateTimeKind.Utc),
-                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Price = 1200m,
+                            RouteId = new Guid("40404040-4040-4040-4040-404040404040")
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-1111-bbbb-1111-aaaaaaaaaaaa"),
+                            ArrivalTime = new DateTime(2025, 10, 21, 12, 0, 0, 0, DateTimeKind.Utc),
+                            BusId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            DepartureTime = new DateTime(2025, 10, 21, 6, 0, 0, 0, DateTimeKind.Utc),
+                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1200m,
                             RouteId = new Guid("40404040-4040-4040-4040-404040404040")
                         },
@@ -165,7 +367,7 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                             ArrivalTime = new DateTime(2025, 10, 21, 13, 0, 0, 0, DateTimeKind.Utc),
                             BusId = new Guid("22222222-2222-2222-2222-222222222222"),
                             DepartureTime = new DateTime(2025, 10, 21, 7, 0, 0, 0, DateTimeKind.Utc),
-                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1300m,
                             RouteId = new Guid("20202020-2020-2020-2020-202020202020")
                         },
@@ -175,7 +377,7 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                             ArrivalTime = new DateTime(2025, 10, 21, 14, 0, 0, 0, DateTimeKind.Utc),
                             BusId = new Guid("33333333-3333-3333-3333-333333333333"),
                             DepartureTime = new DateTime(2025, 10, 21, 8, 0, 0, 0, DateTimeKind.Utc),
-                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            JourneyDate = new DateTime(2025, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Price = 1400m,
                             RouteId = new Guid("30303030-3030-3030-3030-303030303030")
                         });
@@ -291,6 +493,20 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                             DistanceKm = 115.0,
                             FromCity = "Dhaka",
                             ToCity = "Tangail"
+                        },
+                        new
+                        {
+                            Id = new Guid("12121212-1212-1212-1212-121212121212"),
+                            DistanceKm = 400.0,
+                            FromCity = "Dhaka",
+                            ToCity = "Cox's Bazar"
+                        },
+                        new
+                        {
+                            Id = new Guid("13131313-1313-1313-1313-131313131313"),
+                            DistanceKm = 400.0,
+                            FromCity = "Cox's Bazar",
+                            ToCity = "Dhaka"
                         });
                 });
 
@@ -300,8 +516,16 @@ namespace BusTicketReservationSystem.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("BoardingPoint")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<Guid>("BusScheduleId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("DroppingPoint")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<Guid>("PassengerId")
                         .HasColumnType("uuid");

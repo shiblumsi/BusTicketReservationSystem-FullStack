@@ -24,9 +24,16 @@ namespace BusTicketReservationSystem.API.Controllers
         }
 
         [HttpPost("book")]
-        public async Task<IActionResult> BookSeat([FromBody] BookSeatInputDto input)
+        public async Task<IActionResult> BookSeat([FromBody] List<BookSeatInputDto> inputs)
         {
-            var result = await _bookingService.BookSeatAsync(input);
+            var result = await _bookingService.BookSeatAsync(inputs);
+            return Ok(result);
+        }
+
+        [HttpGet("boarding-dropping")]
+        public async Task<IActionResult> GetPoients([FromQuery]string city, [FromQuery]string type)
+        {
+            var result = await _bookingService.GetPointsByCityAsync(city, type);
             return Ok(result);
         }
     }

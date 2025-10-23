@@ -10,6 +10,7 @@ namespace BusTicketReservationSystem.Application.Contracts.Interfaces
     public interface IBookingService
     {
         Task<SeatPlanDto> GetSeatPlanAsync(Guid busScheduleId);
-        Task<BookSeatResultDto> BookSeatAsync(BookSeatInputDto input);
+        Task<BookSeatResultDto> BookSeatAsync(List<BookSeatInputDto> inputs);
+        Task<List<BoardingDroppingDto>> GetPointsByCityAsync(string city, string type);
     }
 }

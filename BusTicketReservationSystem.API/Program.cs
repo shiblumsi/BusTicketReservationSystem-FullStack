@@ -1,6 +1,7 @@
 using BusTicketReservationSystem.Application.Contracts.Interfaces;
 using BusTicketReservationSystem.Application.Contracts.Interfaces.Repositories;
 using BusTicketReservationSystem.Application.Services;
+using BusTicketReservationSystem.Domain.Services;
 using BusTicketReservationSystem.Infrastructure.Persistence;
 using BusTicketReservationSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +21,26 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //DI
 builder.Services.AddScoped<IBusScheduleRepository, BusScheduleRepository>();
 builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<SeatDomainService>();
 
 builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 
+builder.Services.AddScoped<IBoardingDroppingRepository, BoardingDroppingRepository>();
 
 
+// CORS setup
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 
 
@@ -38,6 +52,9 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+// Use CORS
+app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 

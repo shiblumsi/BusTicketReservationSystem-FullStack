@@ -15,17 +15,24 @@ namespace BusTicketReservationSystem.Domain.Entities
         public int SeatNumber { get; private set; }
         public SeatStatus Status { get; private set; }
 
+        public string BoardingPoint { get; private set; }
+        public string DroppingPoint { get; private set; }
+
         public BusSchedule BusSchedule { get; private set; }
         public Passenger Passenger { get; private set; }
 
+        //public DateTime UpdatedAt { get; private set; }
+
         protected Ticket() { }
 
-        public Ticket(Guid busScheduleId, Guid passengerId, int seatNumber)
+        public Ticket(Guid busScheduleId, Guid passengerId, int seatNumber, string boardingPoint, string droppingPoint)
         {
             Id = Guid.NewGuid();
             BusScheduleId = busScheduleId;
             PassengerId = passengerId;
             SeatNumber = seatNumber;
+            BoardingPoint = boardingPoint;
+            DroppingPoint = droppingPoint;
             Status = SeatStatus.Booked;
         }
 
@@ -37,6 +44,12 @@ namespace BusTicketReservationSystem.Domain.Entities
         public void CancelBooking()
         {
             Status = SeatStatus.Available;
+        }
+
+        public void UpdateStatus(SeatStatus newStatus)
+        {
+            Status = newStatus;
+            //UpdatedAt = DateTime.UtcNow;
         }
     }
 }

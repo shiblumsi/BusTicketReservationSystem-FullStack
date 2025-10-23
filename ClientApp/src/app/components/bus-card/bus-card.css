@@ -1,0 +1,26 @@
+.bus-card {
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.bus-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.bus-header h4 {
+  font-size: 1.3rem;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 6px 10px;
+}
+
+.select-btn {
+  border-radius: 10px;
+}
+
+.text-muted i {
+  color: #6c757d;
+}

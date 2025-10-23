@@ -8,6 +8,7 @@ namespace BusTicketReservationSystem.Application.Contracts.DTOs
 {
     public class AvailableBusDto
     {
+        public Guid ScheduleId { get; set; }
         public Guid BusId { get; set; }
         public string CompanyName { get; set; }
         public string BusName { get; set; }
@@ -15,6 +16,7 @@ namespace BusTicketReservationSystem.Application.Contracts.DTOs
         public DateTime StartTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public int SeatsLeft { get; set; }
+        public int TotalSeat { get; set; }
         public decimal Price { get; set; }
     }
 }

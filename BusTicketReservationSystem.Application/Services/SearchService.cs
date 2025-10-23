@@ -22,9 +22,11 @@ namespace BusTicketReservationSystem.Application.Services
 
             var result = schedules.Select(s => new AvailableBusDto
             {
+                ScheduleId = s.Id,
                 BusId = s.BusId,
                 CompanyName = s.Bus.CompanyName,
                 BusName = s.Bus.Name,
+                TotalSeat = s.Bus.TotalSeats,
                 StartTime = s.DepartureTime,
                 ArrivalTime = s.ArrivalTime,
                 Price = s.Price,

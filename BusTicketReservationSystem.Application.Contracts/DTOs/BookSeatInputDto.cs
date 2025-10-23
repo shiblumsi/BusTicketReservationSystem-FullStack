@@ -10,6 +10,8 @@ namespace BusTicketReservationSystem.Application.Contracts.DTOs
     {
         public Guid BusScheduleId { get; set; }
         public int SeatNumber { get; set; }
+        public string BoardingPoint { get;  set; }
+        public string DroppingPoint { get;  set; } 
         public string PassengerName { get; set; }
         public string PassengerMobile { get; set; }
     }

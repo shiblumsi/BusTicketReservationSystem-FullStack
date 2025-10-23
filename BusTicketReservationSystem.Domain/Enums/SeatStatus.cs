@@ -10,6 +10,7 @@ namespace BusTicketReservationSystem.Domain.Enums
     {
         Available,
         Booked,
-        Sold
+        Sold,
+        Cancelled
     }
 }

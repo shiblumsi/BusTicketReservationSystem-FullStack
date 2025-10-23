@@ -1,0 +1,85 @@
+<div class="home-banner d-flex align-items-center justify-content-center">
+  <div class="overlay"></div>
+
+  <div class="search-wrapper container text-center">
+    <h1 class="fw-bold mb-2">Book Your Bus Tickets Easily</h1>
+    <p class="lead mb-5">Search and book bus tickets in seconds</p>
+
+    <div class="search-card mx-auto shadow-lg p-3 my-5">
+      <form (ngSubmit)="searchBuses()" class="row g-2 align-items-center">
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control form-control-lg shadow-sm"
+            [(ngModel)]="from"
+            name="from"
+            placeholder="From"
+            required
+          />
+        </div>
+
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control form-control-lg shadow-sm"
+            [(ngModel)]="to"
+            name="to"
+            placeholder="To"
+            required
+          />
+        </div>
+
+        <div class="col-md-3">
+          <input
+            type="date"
+            class="form-control form-control-lg shadow-sm"
+            [(ngModel)]="journeyDate"
+            name="journeyDate"
+            required
+          />
+        </div>
+
+        <div class="col-md-3 d-grid">
+          <button type="submit" class="btn btn-success btn-lg shadow">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<h1 class="text-center m-5">Discover Trending Destinations</h1>
+
+<div class="container mb-5">
+  <!-- First Row: 2 Images -->
+  <div class="row mb-4 g-3 justify-content-center">
+    <div class="col-md-6">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=800&q=80" alt="Destination 1">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Destination 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Row: 3 Images -->
+  <div class="row g-3 justify-content-center">
+    <div class="col-md-4">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=800&q=80" alt="Destination 3">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Destination 4">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=800&q=80" alt="Destination 5">
+      </div>
+    </div>
+  </div>
+</div>
+<h3 class="text-center">10+ Million Travellers Trusted Us</h3>

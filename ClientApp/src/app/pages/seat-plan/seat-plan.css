@@ -1,0 +1,46 @@
+/* Legend colors */
+.bus {
+  max-width: 260px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border: 2px solid #b8e994;
+  border-radius: 10px;
+  padding: 10px 8px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 4px;
+}
+.box.available { background: #6ba366; }
+.box.selected { background: #b9b1db; }
+.box.booked { background: #dc3545; }
+.box.sold { background: #6c757d; }
+
+/* Seat styles */
+.seat {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 38px;
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.seat.available { background: #e9f7ef; border-color: #28a745; color: #573d15; }
+.seat.selected { background: #b9b1db; border-color: #ece8db;color: #100df3; }
+.seat.booked { background: #fffbda; color: #368a2b; cursor: not-allowed; }
+.seat.sold { background: #da7c6b; color: #3c8a5a; cursor: not-allowed; }
+
+.aisle { width: 5px; }
+
+/* Light tweaks */
+.bus svg { animation: spin 6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
