@@ -15,7 +15,7 @@ export class BusCard {
   @Input() availableBus!: IAvailableBus;
   @Output() busSelected = new EventEmitter<string>();
 
-  selectBus() {
+  onSelectBus(): void {
     this.busSelected.emit(this.availableBus.scheduleId);
   }
 }

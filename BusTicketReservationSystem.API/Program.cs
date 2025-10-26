@@ -27,6 +27,7 @@ builder.Services.AddScoped<SeatDomainService>();
 builder.Services.AddScoped<IPassengerRepository, PassengerRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddScoped<IBoardingDroppingRepository, BoardingDroppingRepository>();
 

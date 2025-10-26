@@ -1,0 +1,13 @@
+.confirmation-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+}
+
+.card {
+  max-width: 600px;
+  border-radius: 15px;
+  background-color: #fff;
+}

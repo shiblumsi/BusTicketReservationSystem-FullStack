@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { IAvailableBus } from '../../core/models/available-bus.dto';
 import { BusCard } from '../../components/bus-card/bus-card';
 import { BusService } from '../../core/services/bus';
-import { IAvailableBus } from '../../core/models/available-bus.dto';
+import { IApiResponse } from '../../core/models/api-response.dto';
 
 @Component({
   selector: 'app-available-bus',
@@ -16,9 +18,15 @@ export class AvailableBus implements OnInit {
   from = '';
   to = '';
   journeyDate = '';
-  buses: IAvailableBus[] = [];
+  availableBuses: IAvailableBus[] = [];
+  loading = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private aBus: BusService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private busService: BusService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -30,21 +38,30 @@ export class AvailableBus implements OnInit {
   }
 
   loadBuses() {
+    this.loading = true;
+    this.busService.getAvailableBuses(this.from, this.to, this.journeyDate).subscribe({
+      next: (res: IApiResponse<IAvailableBus[]>) => {
+        this.loading = false;
 
-    this.aBus.availableBuses(this.from, this.to, this.journeyDate).subscribe({
-      next: (res: any) => {
-        console.log('API Response:', res);
-        this.buses = res;
+        if (res.success) {
+          this.availableBuses = res.data ?? [];
+          this.toastr.success(res.message || 'Buses loaded successfully');
+        } else {
+          this.availableBuses = [];
+          this.toastr.warning(res.message || 'No buses available');
+        }
       },
       error: (err) => {
+        this.loading = false;
         console.error('Error loading buses:', err);
+        this.toastr.error('Server error occurred');
       },
     });
   }
 
   selectBus(scheduleId: string) {
     this.router.navigate(['/seat-plan'], {
-      queryParams: { scheduleId:scheduleId, from: this.from, to: this.to, journeyDate: this.journeyDate },
+      queryParams: { scheduleId, from: this.from, to: this.to, journeyDate: this.journeyDate },
     });
   }
 }

@@ -1,0 +1,28 @@
+<div class="confirmation-container text-center">
+  <div class="card shadow-lg p-4">
+    <h2 class="text-success fw-bold mb-3">Booking Confirmed</h2>
+    <p class="lead mb-4">Thank you for booking with us!</p>
+
+    <div If="bookingData">
+      <h5 class="text-primary mb-3">Passenger Details</h5>
+      <p><strong>BUs:</strong> {{ bookingData.selectedBus.busNameame }}</p>
+      <p><strong>company:</strong> {{ bookingData.selectedBus.companyName }}</p>
+      <p><strong>Name:</strong> {{ bookingData.passengerName }}</p>
+      <p><strong>Mobile:</strong> {{ bookingData.passengerMobile }}</p>
+
+      <h5 class="text-primary mt-4 mb-3">Journey Details</h5>
+      <p><strong>From:</strong> {{ bookingData.from }}</p>
+      <p><strong>To:</strong> {{ bookingData.to }}</p>
+      <p><strong>Date:</strong> {{ bookingData.journeyDate }}</p>
+      <p><strong>Seats:</strong> {{ bookingData.selectedSeatCode }}</p>
+
+      <div class="mt-4">
+        <button class="btn btn-outline-primary" routerLink="/">Go Back Home</button>
+      </div>
+    </div>
+    <div class="mt-4">
+      <button class="btn btn-success me-2" (click)="confirmBooking()">Confirm Booking</button>
+      <button class="btn btn-danger" (click)="cancelBooking()">Cancel Booking</button>
+    </div>
+  </div>
+</div>

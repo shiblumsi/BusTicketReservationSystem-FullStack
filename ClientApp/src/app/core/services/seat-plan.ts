@@ -1,20 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IApiResponse } from '../models/api-response.dto';
 import { IBoardingDropping, ISeatPlan } from '../models/seat-plan.dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SeatPlanService {
-  private apiUrl = 'https://localhost:7113/api/booking';
+  private readonly apiUrl = 'https://localhost:7113/api/booking';
+
   constructor(private http: HttpClient) {}
 
-  getSetPlan(busScheduleId: string): Observable<ISeatPlan> {
-    return this.http.get<ISeatPlan>(`${this.apiUrl}/${busScheduleId}/seats`);
+  getSeatPlan(busScheduleId: string): Observable<IApiResponse<ISeatPlan>> {
+    return this.http.get<IApiResponse<ISeatPlan>>(`${this.apiUrl}/${busScheduleId}/seats`);
   }
 
-  getBoardingDroppingPoient(city:string,type:string):Observable<IBoardingDropping[]>{
-    return this.http.get<IBoardingDropping[]>(`${this.apiUrl}/boarding-dropping?city=${city}&type=${type}`);
+  getBoardingDroppingPoints(
+    city: string,
+    type: string
+  ): Observable<IApiResponse<IBoardingDropping[]>> {
+    const params = new HttpParams().set('city', city).set('type', type);
+    return this.http.get<IApiResponse<IBoardingDropping[]>>(`${this.apiUrl}/boarding-dropping`, {
+      params,
+    });
   }
 }

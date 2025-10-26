@@ -19,6 +19,9 @@ namespace BusTicketReservationSystem.Application.Services
         public async Task<List<AvailableBusDto>> SearchAvailableBusesAsync(string from, string to, DateTime journeyDate)
         {
             var schedules = await _busScheduleRepository.GetAvailableSchedulesAsync(from, to, journeyDate);
+            if (schedules == null || !schedules.Any())
+                throw new Exception("No available buses found for the selected route and date.");
+
 
             var result = schedules.Select(s => new AvailableBusDto
             {

@@ -12,5 +12,9 @@ namespace BusTicketReservationSystem.Application.Contracts.Interfaces
         Task<SeatPlanDto> GetSeatPlanAsync(Guid busScheduleId);
         Task<BookSeatResultDto> BookSeatAsync(List<BookSeatInputDto> inputs);
         Task<List<BoardingDroppingDto>> GetPointsByCityAsync(string city, string type);
+
+        Task<BookSeatResultDto> ConfirmBookingAsync(Guid ticketId);
+        Task<BookSeatResultDto> CancelBookingAsync(Guid ticketId);
+
     }
 }

@@ -1,7 +1,7 @@
 export interface ISeat {
   seatCode: string; // frontend
   seatNumber: number; // backend
-  status: 'Available' | 'Booked' | 'Sold';
+  status: 'Available' | 'Booked' | 'Sold' | 'Cancelled';
   selected?: boolean;
   isBooked?: boolean;
   isSold?: boolean;

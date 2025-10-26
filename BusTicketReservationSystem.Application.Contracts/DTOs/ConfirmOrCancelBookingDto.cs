@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusTicketReservationSystem.Application.Contracts.DTOs
 {
-    public class BookSeatResultDto
+    public class ConfirmOrCancelBookingDto
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public List<Guid> TicketIds { get; set; } = new List<Guid>();
+        public Guid TicketId { get; set; }
     }
-
 }

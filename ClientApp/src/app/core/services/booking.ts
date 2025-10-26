@@ -1,16 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IBookSeatInput, IBookSeatResult } from '../models/book-seat.dto';
 import { Observable } from 'rxjs';
+import { IBookSeatInput, IBookSeatResult } from '../models/book-seat.dto';
+import { IApiResponse } from '../models/api-response.dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class Booking {
-  private apiUrl = 'https://localhost:7113/api/booking';
+export class BookingService {
+  private readonly apiUrl = 'https://localhost:7113/api/booking';
+
   constructor(private http: HttpClient) {}
 
-  bookSeats(input: IBookSeatInput[]): Observable<IBookSeatResult> {
-    return this.http.post<IBookSeatResult>(`${this.apiUrl}/book`, input);
+  bookSeats(input: IBookSeatInput[]): Observable<IApiResponse<IBookSeatResult>> {
+    return this.http.post<IApiResponse<IBookSeatResult>>(`${this.apiUrl}/book`, input);
+  }
+
+  confirmBooking(ticketIds: string[]): Observable<IApiResponse<any>> {
+    return this.http.post<IApiResponse<any>>(`${this.apiUrl}/confirm`, ticketIds);
+  }
+
+  cancelBooking(ticketIds: string[]): Observable<IApiResponse<any>> {
+    return this.http.post<IApiResponse<any>>(`${this.apiUrl}/cancel`, ticketIds);
   }
 }

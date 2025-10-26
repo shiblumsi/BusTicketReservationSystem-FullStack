@@ -34,7 +34,7 @@ namespace BusTicketReservationSystem.Domain.Services
                     throw new InvalidOperationException("Cannot change status once sold");
 
                 case SeatStatus.Cancelled:
-                    if (newStatus != SeatStatus.Available)
+                    if (newStatus != SeatStatus.Available && newStatus != SeatStatus.Booked)
                         throw new InvalidOperationException($"Cannot move from {ticket.Status} to {newStatus}");
                     break;
             }

@@ -36,15 +36,15 @@ namespace BusTicketReservationSystem.Domain.Entities
             Status = SeatStatus.Booked;
         }
 
-        public void MarkAsSold()
-        {
-            Status = SeatStatus.Sold;
-        }
+        //public void MarkAsSold()
+        //{
+        //    Status = SeatStatus.Sold;
+        //}
 
-        public void CancelBooking()
-        {
-            Status = SeatStatus.Available;
-        }
+        //public void CancelBooking()
+        //{
+        //    Status = SeatStatus.Available;
+        //}
 
         public void UpdateStatus(SeatStatus newStatus)
         {

@@ -9,5 +9,5 @@ export interface IAvailableBus {
   seatsLeft: number;
   price: number;
   totalSeat: number;
-  type: 'AC';
+  type: string;
 }

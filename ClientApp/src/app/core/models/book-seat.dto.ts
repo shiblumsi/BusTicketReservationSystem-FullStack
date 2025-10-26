@@ -10,4 +10,5 @@ export interface IBookSeatInput {
 export interface IBookSeatResult {
   success: boolean;
   message: string;
+  ticketIds: any;
 }
