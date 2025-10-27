@@ -31,6 +31,21 @@ Backend is built with .NET 9 Web API and Frontend with Angular 20.
 git clone "https://github.com/shiblumsi/BusTicketReservationSystem-FullStack"
 cd BusTicketReservationSystem
 ```
+
+- Update appsettings.json in BusTicketReservationSystem.API
+```bash
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=BusTicketDB;Username=postgres;Password=YourPassword"
+  }
+}
+```
+- Apply Database Migrations
+ ```bash
+cd BusTicketReservationSystem.Infrastructure
+dotnet ef database update
+```
+### Run Application
 - backend
 ```bash
 
