@@ -50,3 +50,7 @@ ng serve
 cd ../BusTicketReservationSystem.Tests
 dotnet test
 ```
+##  Demo Video
+Watch the short walkthrough video (Architecture + Workflow + Tests):
+
+ Watch on Google Drive: https://drive.google.com/file/d/1ZISxpBTkXGc27ZqL4aTlpxEuWHgdihDv/view?usp=sharing
