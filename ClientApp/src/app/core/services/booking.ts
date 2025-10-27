@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBookSeatInput, IBookSeatResult } from '../models/book-seat.dto';
 import { IApiResponse } from '../models/api-response.dto';
+import { IBookSeatInput, IBookSeatResult } from '../models/book-seat.dto';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusTicketReservationSystem.Domain.Common;
+using BusTicketReservationSystem.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusTicketReservationSystem.Domain.Entities
 {
-    public class BusSchedule
+    public class BusSchedule : BaseEntity
     {
-        public Guid Id { get; private set; }
         public Guid BusId { get; private set; }
         public Guid RouteId { get; private set; }
         public DateTime JourneyDate { get; private set; }
@@ -24,7 +25,6 @@ namespace BusTicketReservationSystem.Domain.Entities
 
         public BusSchedule(Guid busId, Guid routeId, DateTime journeyDate, DateTime departure, DateTime arrival, decimal price)
         {
-            Id = Guid.NewGuid();
             BusId = busId;
             RouteId = routeId;
             JourneyDate = journeyDate;
@@ -35,7 +35,8 @@ namespace BusTicketReservationSystem.Domain.Entities
 
         public int SeatsLeft()
         {
-            return Bus.TotalSeats - Tickets.Count;
+            int bookedSeats = Tickets.Count(t => t.Status == SeatStatus.Booked || t.Status == SeatStatus.Sold);
+            return Bus.TotalSeats - bookedSeats;
         }
     }
 }

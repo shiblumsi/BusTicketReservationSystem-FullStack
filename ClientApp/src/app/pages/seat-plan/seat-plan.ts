@@ -19,8 +19,8 @@ import { SeatPlanService } from '../../core/services/seat-plan';
 })
 export class SeatPlan implements OnInit {
   scheduleId: string | null = null;
-  from = '';
-  to = '';
+  departureCity = '';
+  arrivalCity = '';
   journeyDate = '';
 
   availableBus!: IAvailableBus;
@@ -49,8 +49,8 @@ export class SeatPlan implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.scheduleId = params['scheduleId'] ?? null;
-      this.from = params['from'] ?? '';
-      this.to = params['to'] ?? '';
+      this.departureCity = params['departureCity'] ?? '';
+      this.arrivalCity = params['arrivalCity'] ?? '';
       this.journeyDate = params['journeyDate'] ?? '';
 
       this.loadBusDetails();
@@ -61,7 +61,7 @@ export class SeatPlan implements OnInit {
   }
 
   loadBoardingPoints(): void {
-    this.seatPlanService.getBoardingDroppingPoints(this.from, 'Boarding').subscribe({
+    this.seatPlanService.getBoardingDroppingPoints(this.departureCity, 'Boarding').subscribe({
       next: (res: IApiResponse<IBoardingDropping[]>) => {
         if (res.success) {
           this.boardingPoints = res.data ?? [];
@@ -72,7 +72,7 @@ export class SeatPlan implements OnInit {
   }
 
   loadDroppingPoints(): void {
-    this.seatPlanService.getBoardingDroppingPoints(this.to, 'Dropping').subscribe({
+    this.seatPlanService.getBoardingDroppingPoints(this.arrivalCity, 'Dropping').subscribe({
       next: (res: IApiResponse<IBoardingDropping[]>) => {
         if (res.success) {
           this.droppingPoints = res.data ?? [];
@@ -83,14 +83,16 @@ export class SeatPlan implements OnInit {
   }
 
   loadBusDetails(): void {
-    this.busService.getAvailableBuses(this.from, this.to, this.journeyDate).subscribe({
-      next: (res: IApiResponse<IAvailableBus[]>) => {
-        if (res.success) {
-          this.availableBus = res.data?.find((b) => b.scheduleId === this.scheduleId)!;
-        }
-      },
-      error: (err) => console.error('Error loading bus details:', err),
-    });
+    this.busService
+      .getAvailableBuses(this.departureCity, this.arrivalCity, this.journeyDate)
+      .subscribe({
+        next: (res: IApiResponse<IAvailableBus[]>) => {
+          if (res.success) {
+            this.availableBus = res.data?.find((b) => b.scheduleId === this.scheduleId)!;
+          }
+        },
+        error: (err) => console.error('Error loading bus details:', err),
+      });
   }
 
   loadSeatPlan(): void {
@@ -115,22 +117,18 @@ export class SeatPlan implements OnInit {
           const seatCode = `${String.fromCharCode(65 + rowIndex)}${colIndex + 1}`;
           const seatNumber = rowIndex * seatsPerRow + (colIndex + 1);
 
-          const statusText =
-            s.status === 1
-              ? 'Booked'
-              : s.status === 2
-              ? 'Sold'
-              : s.status === 3
-              ? 'Cancelled'
-              : 'Available';
+          const isBooked = s.status === 1;
+          const isSold = s.status === 2;
+          const isAvailable = s.status === 0 || s.status === 3; // Cancelled treated as Available
 
           return {
             seatCode,
             seatNumber,
-            status: statusText,
+            status: isBooked ? 'Booked' : isSold ? 'Sold' : 'Available',
             selected: false,
-            isBooked: s.status === 1,
-            isSold: s.status === 2,
+            isBooked,
+            isSold,
+            isAvailable,
           } as ISeat;
         });
       },
@@ -143,7 +141,7 @@ export class SeatPlan implements OnInit {
   }
 
   toggleSeat(seat: ISeat): void {
-    if (seat.status === 'Booked' || seat.status === 'Sold') return;
+    if (!seat.isAvailable) return;
     seat.selected = !seat.selected;
   }
 
@@ -192,8 +190,8 @@ export class SeatPlan implements OnInit {
           const bookingInfo = {
             passengerName: this.passengerName,
             passengerMobile: this.passengerMobile,
-            from: this.from,
-            to: this.to,
+            departureCity: this.departureCity,
+            arrivalCity: this.arrivalCity,
             journeyDate: this.journeyDate,
             selectedSeatCode: this.selectedSeatCode,
             selectedBus: this.availableBus,

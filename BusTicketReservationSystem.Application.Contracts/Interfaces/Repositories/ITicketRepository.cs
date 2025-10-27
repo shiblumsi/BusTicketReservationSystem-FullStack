@@ -12,5 +12,7 @@ namespace BusTicketReservationSystem.Application.Contracts.Interfaces.Repositori
         Task AddAsync(Ticket ticket);
         Task<Ticket?> GetByIdAsync(Guid id);
         Task UpdateAsync(Ticket ticket);
+        Task<List<Ticket>> GetByIdsAsync(List<Guid> ids);
+
     }
 }

@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BookingService } from '../../core/services/booking';
 import { IApiResponse } from '../../core/models/api-response.dto';
+import { BookingService } from '../../core/services/booking';
 
 @Component({
   selector: 'app-booking-confirmation',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './booking-confirmation.html',
   styleUrls: ['./booking-confirmation.css'],
 })
@@ -43,7 +43,6 @@ export class BookingConfirmation implements OnInit {
       console.log('Booking Confirmation Data:', this.bookingData);
     });
   }
-
 
   confirmBooking(): void {
     if (!this.bookingData?.ticketIds?.length) {

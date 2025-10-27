@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.API", "BusTicketReservationSystem.API\BusTicketReservationSystem.API.csproj", "{FE1BDE38-ADFA-4E69-B256-706162D28692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusTicketReservationSystem.Tests", "BusTicketReservationSystem.Tests\BusTicketReservationSystem.Tests.csproj", "{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE1BDE38-ADFA-4E69-B256-706162D28692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{D574AC6D-B9D7-4684-9201-4E28C2EA5FB1} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
 		{3CCB75A0-3E79-466B-B927-7C3C6CA7BC08} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
 		{FE1BDE38-ADFA-4E69-B256-706162D28692} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
+		{3C70AEB4-EE50-4DB2-A10D-36BBB28E5320} = {0C5E03DF-FCA3-4EA0-82EA-9666961E875C}
 	EndGlobalSection
 EndGlobal

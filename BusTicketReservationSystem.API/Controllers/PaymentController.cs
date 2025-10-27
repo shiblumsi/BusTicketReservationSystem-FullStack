@@ -17,7 +17,6 @@ namespace BusTicketReservationSystem.API.Controllers
         [HttpPost("initiate")]
         public async Task<IActionResult> InitiatePayment([FromBody] List<Guid> ticketIds)
         {
-            Console.WriteLine("called`````````````````````````````````````````````==============",ticketIds);
             if (ticketIds == null || ticketIds.Count == 0)
                 return BadRequest("No tickets provided.");
 
@@ -51,7 +50,7 @@ namespace BusTicketReservationSystem.API.Controllers
 
             await _paymentService.HandlePaymentSuccessAsync(ticketIdList);
 
-            var redirectToFE = "http://localhost:4200"; // FE thank you page
+            var redirectToFE = "http://localhost:4200/payment-success";
             return Redirect(redirectToFE);
         }
     }

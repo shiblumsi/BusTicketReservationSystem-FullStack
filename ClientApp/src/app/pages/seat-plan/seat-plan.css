@@ -16,10 +16,18 @@
   display: inline-block;
   margin-right: 4px;
 }
-.box.available { background: #6ba366; }
-.box.selected { background: #b9b1db; }
-.box.booked { background: #dc3545; }
-.box.sold { background: #6c757d; }
+.box.available {
+  background: #79ca72;
+}
+.box.selected {
+  background: #b9b1db;
+}
+.box.booked {
+  background: #f5b133;
+}
+.box.sold {
+  background: #e92020;
+}
 
 /* Seat styles */
 .seat {
@@ -34,13 +42,37 @@
   transition: 0.2s;
 }
 
-.seat.available { background: #e9f7ef; border-color: #28a745; color: #573d15; }
-.seat.selected { background: #b9b1db; border-color: #ece8db;color: #100df3; }
-.seat.booked { background: #fffbda; color: #368a2b; cursor: not-allowed; }
-.seat.sold { background: #da7c6b; color: #3c8a5a; cursor: not-allowed; }
+.seat.available {
+  background: #47a570;
+  border-color: #28a745;
+  color: #573d15;
+}
+.seat.selected {
+  background: #d4d0e6;
+  border-color: #ece8db;
+  color: #100df3;
+}
+.seat.booked {
+  background: #eccb5f;
+  color: #368a2b;
+  cursor: not-allowed;
+}
+.seat.sold {
+  background: #da604b;
+  color: #3c8a5a;
+  cursor: not-allowed;
+}
 
-.aisle { width: 5px; }
+.aisle {
+  width: 5px;
+}
 
 /* Light tweaks */
-.bus svg { animation: spin 6s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.bus svg {
+  animation: spin 6s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

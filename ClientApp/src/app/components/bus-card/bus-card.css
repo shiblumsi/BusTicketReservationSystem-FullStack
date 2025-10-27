@@ -1,24 +1,56 @@
 .bus-card {
-  transition: all 0.3s ease;
-  background-color: #fff;
+  transition: all 0.4s ease;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
 }
 
 .bus-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
-.bus-header h4 {
-  font-size: 1.3rem;
+.bus-card h4 {
+  font-size: 1.35rem;
+  color: #1f4f1f;
 }
 
-.badge {
-  font-size: 0.8rem;
-  padding: 6px 10px;
+.bus-card p {
+  margin-bottom: 0.25rem;
 }
 
-.select-btn {
-  border-radius: 10px;
+.bus-card .badge {
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  border-radius: 12px;
+  background-color: #0dcaf0;
+  color: #fff;
+}
+
+.bus-card .text-success {
+  font-weight: 600;
+}
+
+.bus-card .text-danger {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.bus-card button {
+  border-radius: 12px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.bus-card button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0dcaf0, #198754);
+  color: #fff;
+  border: none;
 }
 
 .text-muted i {

@@ -9,7 +9,7 @@ namespace BusTicketReservationSystem.Application.Contracts.Interfaces.Repositori
 {
     public interface IBusScheduleRepository
     {
-        Task<List<BusSchedule>> GetAvailableSchedulesAsync(string from, string to, DateTime journeyDate);
+        Task<List<BusSchedule>> GetAvailableSchedulesAsync(string departureCity, string arrivalCity, DateTime journeyDate);
         Task<BusSchedule> GetByIdWithTicketsAsync(Guid id);
     }
 }

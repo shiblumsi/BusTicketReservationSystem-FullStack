@@ -18,7 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-//DI
+//Dependency Injection
 builder.Services.AddScoped<IBusScheduleRepository, BusScheduleRepository>();
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -42,8 +42,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
-
 
 
 var app = builder.Build();

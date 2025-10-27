@@ -17,12 +17,12 @@ namespace BusTicketReservationSystem.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Search([FromQuery] string from, [FromQuery] string to, [FromQuery] DateTime journeyDate)
+        public async Task<IActionResult> Search([FromQuery] string departureCity, [FromQuery] string arrivalCity, [FromQuery] DateTime journeyDate)
         {
             try
             {
                 journeyDate = journeyDate.Date;
-                var buses = await _searchService.SearchAvailableBusesAsync(from, to, journeyDate);
+                var buses = await _searchService.SearchAvailableBusesAsync(departureCity, arrivalCity, journeyDate);
 
                 var response = new ApiResponseDto<List<AvailableBusDto>>
                 {

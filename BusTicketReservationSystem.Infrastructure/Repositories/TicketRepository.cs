@@ -33,5 +33,13 @@ namespace BusTicketReservationSystem.Infrastructure.Repositories
             _context.Tickets.Update(ticket);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<Ticket>> GetByIdsAsync(List<Guid> ids)
+        {
+            return await _context.Tickets
+                .Include(t => t.BusSchedule)
+                .Where(t => ids.Contains(t.Id))
+                .ToListAsync();
+        }
+
     }
 }

@@ -1,13 +1,22 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">
-    Available Buses from {{ from }} → {{ to }} on {{ journeyDate }}
+  <h2 class="text-center text-info mb-4">
+    Available Buses from {{ departureCity }} → {{ arrivalCity }} on {{ journeyDate }}
   </h2>
 
-  <div If="buses.length > 0; else noData">
+  <!-- Spinner -->
+  <div *ngIf="loading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Buses List -->
+  <div *ngIf="!loading && availableBuses.length > 0; else noData">
     <app-bus-card
       *ngFor="let bus of availableBuses"
       [availableBus]="bus"
-      (busSelected)="selectBus($event)">
+      (busSelected)="selectBus($event)"
+    >
     </app-bus-card>
   </div>
 

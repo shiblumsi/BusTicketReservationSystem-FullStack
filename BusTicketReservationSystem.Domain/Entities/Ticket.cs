@@ -1,4 +1,5 @@
-﻿using BusTicketReservationSystem.Domain.Enums;
+﻿using BusTicketReservationSystem.Domain.Common;
+using BusTicketReservationSystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusTicketReservationSystem.Domain.Entities
 {
-    public class Ticket
+    public class Ticket : BaseEntity
     {
-        public Guid Id { get; private set; }
         public Guid BusScheduleId { get; private set; }
         public Guid PassengerId { get; private set; }
         public int SeatNumber { get; private set; }
@@ -21,13 +21,11 @@ namespace BusTicketReservationSystem.Domain.Entities
         public BusSchedule BusSchedule { get; private set; }
         public Passenger Passenger { get; private set; }
 
-        //public DateTime UpdatedAt { get; private set; }
 
         protected Ticket() { }
 
         public Ticket(Guid busScheduleId, Guid passengerId, int seatNumber, string boardingPoint, string droppingPoint)
         {
-            Id = Guid.NewGuid();
             BusScheduleId = busScheduleId;
             PassengerId = passengerId;
             SeatNumber = seatNumber;
@@ -36,20 +34,11 @@ namespace BusTicketReservationSystem.Domain.Entities
             Status = SeatStatus.Booked;
         }
 
-        //public void MarkAsSold()
-        //{
-        //    Status = SeatStatus.Sold;
-        //}
-
-        //public void CancelBooking()
-        //{
-        //    Status = SeatStatus.Available;
-        //}
 
         public void UpdateStatus(SeatStatus newStatus)
         {
             Status = newStatus;
-            //UpdatedAt = DateTime.UtcNow;
+            SetUpdated();
         }
     }
 }

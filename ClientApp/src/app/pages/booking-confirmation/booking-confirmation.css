@@ -1,13 +1,70 @@
 .confirmation-container {
-  min-height: 80vh;
+  min-height: 80vh; /* Full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  background: linear-gradient(135deg, #fdfeff, hsl(210, 100%, 98%));
+  padding: 1rem;
+  position: relative;
 }
 
 .card {
   max-width: 600px;
+  width: 100%;
   border-radius: 15px;
   background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.section {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f4f1f;
+  margin-bottom: 0.5rem;
+}
+
+.info-list li {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.badge {
+  font-size: 0.85rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+button {
+  min-width: 140px;
+}
+
+/* Spinner overlay */
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 15px;
 }

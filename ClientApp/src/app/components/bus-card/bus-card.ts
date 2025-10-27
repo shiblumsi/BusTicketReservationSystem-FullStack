@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IAvailableBus } from '../../core/models/available-bus.dto';
 
-
-
 @Component({
   selector: 'app-bus-card',
   standalone: true,

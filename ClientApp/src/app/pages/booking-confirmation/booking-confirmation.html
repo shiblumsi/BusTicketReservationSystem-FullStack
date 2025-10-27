@@ -1,28 +1,59 @@
-<div class="confirmation-container text-center">
+<div class="confirmation-container" *ngIf="bookingData; else noBooking">
   <div class="card shadow-lg p-4">
-    <h2 class="text-success fw-bold mb-3">Booking Confirmed</h2>
-    <p class="lead mb-4">Thank you for booking with us!</p>
-
-    <div If="bookingData">
-      <h5 class="text-primary mb-3">Passenger Details</h5>
-      <p><strong>BUs:</strong> {{ bookingData.selectedBus.busNameame }}</p>
-      <p><strong>company:</strong> {{ bookingData.selectedBus.companyName }}</p>
-      <p><strong>Name:</strong> {{ bookingData.passengerName }}</p>
-      <p><strong>Mobile:</strong> {{ bookingData.passengerMobile }}</p>
-
-      <h5 class="text-primary mt-4 mb-3">Journey Details</h5>
-      <p><strong>From:</strong> {{ bookingData.from }}</p>
-      <p><strong>To:</strong> {{ bookingData.to }}</p>
-      <p><strong>Date:</strong> {{ bookingData.journeyDate }}</p>
-      <p><strong>Seats:</strong> {{ bookingData.selectedSeatCode }}</p>
-
-      <div class="mt-4">
-        <button class="btn btn-outline-primary" routerLink="/">Go Back Home</button>
+    <!-- Spinner overlay -->
+    <div *ngIf="loading" class="spinner-overlay">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <div class="mt-4">
-      <button class="btn btn-success me-2" (click)="confirmBooking()">Confirm Booking</button>
-      <button class="btn btn-danger" (click)="cancelBooking()">Cancel Booking</button>
+
+    <h2 class="text-success fw-bold mb-4 text-center">Booking Successful</h2>
+    <p class="text-center text-muted mb-4">Thank you for booking with us!</p>
+
+    <!-- ===== Passenger & Bus Info ===== -->
+    <div class="section mb-4">
+      <h5 class="section-title">Bus & Passenger Details</h5>
+      <ul class="info-list list-unstyled mb-0">
+        <li><strong>Bus Name:</strong> {{ bookingData.selectedBus?.busName }}</li>
+        <li><strong>Company:</strong> {{ bookingData.selectedBus?.companyName }}</li>
+        <li><strong>Passenger Name:</strong> {{ bookingData.passengerName }}</li>
+        <li><strong>Mobile:</strong> {{ bookingData.passengerMobile }}</li>
+      </ul>
+    </div>
+
+    <!-- ===== Journey Info ===== -->
+    <div class="section mb-4">
+      <h5 class="section-title">Journey Details</h5>
+      <ul class="info-list list-unstyled mb-0">
+        <li><strong>From:</strong> {{ bookingData.departureCity }}</li>
+        <li><strong>To:</strong> {{ bookingData.arrivalCity }}</li>
+        <li><strong>Date:</strong> {{ bookingData.journeyDate | date : 'fullDate' }}</li>
+        <li>
+          <strong>Seats:</strong>
+          <span class="badge bg-success ms-1">{{ bookingData.selectedSeatCode }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ===== Actions ===== -->
+    <div class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+      <button class="btn btn-outline-primary" routerLink="/">Go Back Home</button>
+      <button class="btn btn-success" [disabled]="loading" (click)="confirmBooking()">
+        {{ loading ? 'Processing...' : 'Confirm Booking' }}
+      </button>
+      <button class="btn btn-danger" [disabled]="loading" (click)="cancelBooking()">
+        {{ loading ? 'Processing...' : 'Cancel Booking' }}
+      </button>
     </div>
   </div>
 </div>
+
+<ng-template #noBooking>
+  <div class="confirmation-container text-center">
+    <div class="card shadow-lg p-4">
+      <h3 class="text-warning mb-3">No Booking Found</h3>
+      <p>Please make a booking first.</p>
+      <button class="btn btn-primary" routerLink="/">Go Back Home</button>
+    </div>
+  </div>
+</ng-template>

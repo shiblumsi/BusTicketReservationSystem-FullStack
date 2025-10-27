@@ -7,29 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using BusTicketReservationSystem.Application.Contracts.Interfaces.Repositories;
+using Microsoft.Extensions.Configuration;
 
 namespace BusTicketReservationSystem.Application.Services
 {
     public class PaymentService : IPaymentService
     {
         private readonly IBookingService _bookingService;
+        private readonly ITicketRepository _ticketRepo;
+        private readonly IConfiguration _config;
 
-        private readonly string _storeId = "sof6659cd57240c6";
-        private readonly string _storePass = "sof6659cd57240c6@ssl";
-        private readonly string _sslUrl = "https://sandbox.sslcommerz.com/gwprocess/v3/api.php";
+        private readonly string _storeId;
+        private readonly string _storePass;
+        private readonly string _sslUrl;
 
-        public PaymentService(IBookingService bookingService)
+        public PaymentService(IBookingService bookingService, ITicketRepository ticketRepo, IConfiguration configatation)
         {
             _bookingService = bookingService;
-          
+            _config = configatation;
+            _ticketRepo = ticketRepo;
+
+            _storeId = _config["SSLCommerz:StoreId"];
+            _storePass = _config["SSLCommerz:StorePassword"];
+            _sslUrl = _config["SSLCommerz:ApiUrl"];
+
         }
 
         public async Task<string> InitiatePaymentAsync(List<Guid> ticketIds)
         {
-            if (ticketIds == null || ticketIds.Count == 0)
-                throw new Exception("No tickets provided.");
+            var tickets = await _ticketRepo.GetByIdsAsync(ticketIds);
+            if (ticketIds == null || !ticketIds.Any())
+                throw new Exception("No ticket ids provided.");
 
-            decimal totalAmount = 100m * ticketIds.Count;
+            decimal totalAmount = tickets.Sum(t => t.BusSchedule?.Price ?? 0);
             string tranId = Guid.NewGuid().ToString();
 
             var postData = new Dictionary<string, string>
@@ -45,7 +56,7 @@ namespace BusTicketReservationSystem.Application.Services
                 {"fail_url", $"https://localhost:7113/api/payment/fail?ticketIds={string.Join(",", ticketIds)}"},
                 {"cancel_url", $"https://localhost:7113/api/payment/cancel?ticketIds={string.Join(",", ticketIds)}"},
 
-                {"cus_name", "Demo User"},
+                {"cus_name", "Jhon Doe"},
                 {"cus_email", "demo@test.com"},
                 {"cus_phone", "01700000000"},
                 {"cus_add1", "Dhaka"},
@@ -80,5 +91,5 @@ namespace BusTicketReservationSystem.Application.Services
 
             return true;
         }
-    } 
+    }
 }

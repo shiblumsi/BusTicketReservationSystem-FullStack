@@ -17,15 +17,15 @@ namespace BusTicketReservationSystem.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<List<BusSchedule>> GetAvailableSchedulesAsync(string from, string to, DateTime journeyDate)
+        public async Task<List<BusSchedule>> GetAvailableSchedulesAsync(string departureCity, string arrivalCity, DateTime journeyDate)
         {
             return await _context.BusSchedules
                 .Include(s => s.Bus)
                 .Include(s => s.Route)
                 .Include(s => s.Tickets)
                 .Where(s =>
-                    s.Route.FromCity.ToLower().Trim() == from.ToLower().Trim() &&
-                    s.Route.ToCity.ToLower().Trim() == to.ToLower().Trim() &&
+                    s.Route.FromCity.ToLower().Trim() == departureCity.ToLower().Trim() &&
+                    s.Route.ToCity.ToLower().Trim() == arrivalCity.ToLower().Trim() &&
                     s.JourneyDate == journeyDate.Date
                 )
                 .ToListAsync();
